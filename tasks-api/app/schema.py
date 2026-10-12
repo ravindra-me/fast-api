@@ -11,3 +11,5 @@ class TaskOut(BaseModel):
 
 class TaskListOut(BaseModel):
     data:list[TaskOut]
+    total: int
+
