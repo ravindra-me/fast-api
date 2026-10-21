@@ -11,3 +11,23 @@
 -- offect = (page -1) * perpagitem
 
 select * from tasks where done = false and title ilike '%sql%'  limit 2 OFFSET 2;
+
+create table users(
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMP NOT NULL DEFAULT now() 
+);
+
+create table blogs(
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    content TEXT NOT NULL,
+    published BOOLEAN NOT NULL DEFAULT false,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP NOT NULL DEFAULT now() 
+);
+
+
+CREATE INDEX idx_blogs_user_published ON blogs(user_id, published);
+
