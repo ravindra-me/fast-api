@@ -39,3 +39,9 @@ class BlogListOut(BaseModel):
 class UserReportOut(BaseModel):
     name:str
     blog_count:int
+    
+    
+class BlogUpdate(BaseModel):
+    title: str = Field(min_length=1, max_length=200)
+    content: str = Field(min_length=1)
+    published: bool = False

@@ -3,7 +3,7 @@ from app.database import get_db
 from sqlalchemy.orm import Session
 from sqlalchemy import text, select
 from app.models import Blog
-from app.routers import users
+from app.routers import users, blogs
 
 app = FastAPI()
 
@@ -20,6 +20,7 @@ def test_blogs(db:Session=Depends(get_db)):
    
    
 app.include_router(users.router, prefix='/api/v1')
+app.include_router(blogs.router, prefix='/api/v1')
 
 
 @app.get('/health')

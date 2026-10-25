@@ -14,3 +14,26 @@ create tasks(
 )
 
 create index idx_tasks_user_ids on tasks(user_id, pus)
+
+
+select blogs.title, users.name from blogs  join users on blogs.user_id == users.id
+
+select  users.name, STRING_AGG(blogs.title, ', ') AS titles from users left join blogs on blogs.user_id = users.id group by users.name having count(blogs.id);
+
+select users.name from users left join blogs where blogs.id is null
+
+
+select users.name, count(blogs.id) from users inner join blogs on users.id = blogs.user_id group by users.name;
+
+SELECT users.name, COUNT(blogs.id) AS blog_count
+FROM users
+LEFT JOIN blogs ON blogs.user_id = users.id
+GROUP BY  users.name
+ORDER BY users.name;
+
+
+SELECT users.name, COUNT(blogs.id) AS blog_count
+FROM users
+LEFT JOIN blogs ON blogs.user_id = users.id where blogs.user_id = users.id and blogs.published = true
+GROUP BY  users.name
+ORDER BY users.name;
