@@ -5,6 +5,7 @@ from datetime import datetime
 class UserCreate(BaseModel):
     name:str = Field(min_length=1,max_length=50)
     email:str =Field(min_length=10,max_length=100)
+    password: str = Field(min_length=8, max_length=100)
 
 class UserOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -45,3 +46,8 @@ class BlogUpdate(BaseModel):
     title: str = Field(min_length=1, max_length=200)
     content: str = Field(min_length=1)
     published: bool = False
+    
+class Token(BaseModel):
+    access_token:str
+    token_type:str = "bearer"
+

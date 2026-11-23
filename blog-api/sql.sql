@@ -37,3 +37,7 @@ FROM users
 LEFT JOIN blogs ON blogs.user_id = users.id where blogs.user_id = users.id and blogs.published = true
 GROUP BY  users.name
 ORDER BY users.name;
+
+
+create table events (id int primary key, name text not null, seat_left int not null);
+insert into events values(1, 'Concert', 1);
